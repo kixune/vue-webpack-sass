@@ -1,8 +1,9 @@
 var webpack = require('webpack');
 var path = require('path');
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 // Naming and path settings
-var appName = 'app';
+var appName = 'bundle';
 var entryPoint = './src/main.js';
 var exportPath = path.resolve(__dirname, './build');
 
@@ -16,7 +17,7 @@ if (env === 'production') {
 
     plugins.push(new UglifyJsPlugin({ minimize: true }));
     plugins.push(new webpack.DefinePlugin({
-        'process.env' {
+        'process.env': {
             NODE_ENV: '"production"'
         }
     }));
@@ -52,7 +53,15 @@ module.exports = {
     resolve: {
         alias: {
             'vue$': 'vue/dist/vue.esm.js'
-        }
+        },
+        extensions: ['.vue', '.js']
     },
-    plugins
+    plugins: [
+        new BrowserSyncPlugin({
+            host: 'localhost',
+            port: '1337',
+            server: { baseDir: ['./'] },
+            files: ['index.html', 'src/*']
+        })
+    ]
 };
