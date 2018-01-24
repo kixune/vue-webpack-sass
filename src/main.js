@@ -1,8 +1,8 @@
 import Vue from 'vue';
-import App from './App';
+import Prime from './Prime';
 
 new Vue({
     el: '#vue-a',
-    template: '<App/>',
-    components: { App }
+    template: '<Prime/>',
+    components: { Prime }
 });

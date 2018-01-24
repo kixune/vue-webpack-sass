@@ -1,15 +1,15 @@
-var webpack = require('webpack');
-var path = require('path');
-var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
+const webpack = require('webpack');
+const path = require('path');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 // Naming and path settings
-var appName = 'bundle';
-var entryPoint = './src/main.js';
-var exportPath = path.resolve(__dirname, './build');
+let appName = 'bundle';
+const entryPoint = './src/main.js';
+const exportPath = path.resolve(__dirname, './build');
 
 // Environment flag
+const env = process.env.WEBPACK_ENV;
 var plugins = [];
-var env = process.env.WEBPACK_ENV;
 
 // Differ settings based on production flag
 if (env === 'production') {
